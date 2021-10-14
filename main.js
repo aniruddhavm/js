@@ -12,13 +12,15 @@ function onclick(){
     obj.desc=spentOn.value;
     obj.moment=new Date();
     arr.push(obj)
-    console.log(arr);
+    // console.log(arr);
     totalExpnse=totalExpnse+obj.price;
     
     const allExpenseTable = arr.map(expense => createListItems(expense));
     const joinAllExpenseElement = allExpenseTable.join('');
-    console.log(allExpenseTable);
+    // console.log(allExpenseTable);
     description.innerHTML = joinAllExpenseElement;
+    Amount.value=null;
+    spentOn.value=null;
 }
 btn.addEventListener("click",onclick,false);
 
@@ -29,11 +31,11 @@ function deletefunction(ani)
     for (let x of arr){
         if(ani!=x.moment.valueOf()){
             newarr.push(x);
-
         }
         else{totalExpnse=totalExpnse-x.price}
     }
     arr=newarr;
+    document.querySelector("#headtotal").textContent = "Total : "+totalExpnse;
     render(arr);
 }
 function render(newarr){
